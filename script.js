@@ -1,112 +1,110 @@
 let connected = false;
 let authenticated = false;
-let scanning = false;
 
 
-// CONNECT DRONE
+/* CONNECT DRONE */
+
 function connectDrone() {
 
     connected = true;
 
-    document.getElementById("connectionStatus").textContent = "ONLINE";
-    document.getElementById("connectionText").textContent =
-        "Drone connected successfully";
+    document.getElementById("connectionStatus").innerText =
+        "ONLINE";
 
-    addLog("Drone connected successfully.");
+    document.getElementById("connectionText").innerText =
+        "Drone-01 connected";
 
-    showMessage("✅ Drone connected successfully.");
+    addLog("Drone-01 connected successfully", "green");
+
+    showMessage("📡 Drone connection established.");
+
 }
 
 
-// AUTHENTICATE
+/* AUTHENTICATION */
+
 function authenticateDrone() {
 
     if (!connected) {
 
-        showMessage("⚠️ Please connect the drone first.");
+        showMessage("⚠️ Connect the drone before authentication.");
 
-        addLog("Authentication failed: drone not connected.");
+        addLog("Authentication attempt blocked", "yellow");
 
         return;
     }
+
 
     authenticated = true;
 
-    document.getElementById("authenticationStatus").textContent =
+
+    document.getElementById("authStatus").innerText =
         "VERIFIED";
 
-    document.getElementById("authCheck").textContent =
+    document.getElementById("authText").innerText =
+        "Operator authenticated";
+
+    document.getElementById("authenticationCheck").innerText =
         "VERIFIED";
 
-    addLog("Drone authentication successful.");
 
-    showMessage("🔐 Drone authentication successful.");
+    addLog("Operator authentication successful", "green");
+
+    showMessage("🔐 Authentication successful.");
+
 }
 
 
-// SECURITY SCAN
+/* SECURITY SCAN */
+
 function runSecurityScan() {
 
-    if (scanning) {
+    if (!connected) {
+
+        showMessage("⚠️ Connect the drone before running a scan.");
+
         return;
     }
 
-    scanning = true;
 
-    const button = document.querySelector(".scan-button");
-
-    button.textContent = "🔄 SCANNING...";
-
-    document.getElementById("spoofCheck").textContent =
+    document.getElementById("spoofCheck").innerText =
         "SCANNING";
 
-    document.getElementById("securityScore").textContent =
-        "CHECK";
 
-    addLog("Security scan started.");
-
-    showMessage("🔍 Running anti-spoofing security scan...");
+    showMessage("🔍 Running spoof detection scan...");
 
 
     setTimeout(function () {
 
-        document.getElementById("spoofCheck").textContent =
-            "CLEAR";
+        document.getElementById("spoofCheck").innerText =
+            "SECURE";
 
-        document.getElementById("securityScore").textContent =
-            "100%";
-
-        document.getElementById("threatStatus").textContent =
+        document.getElementById("threatStatus").innerText =
             "PROTECTED";
 
-        document.getElementById("threatText").textContent =
-            "No spoofing detected";
+        document.getElementById("threatText").innerText =
+            "No threat detected";
 
-        button.textContent =
-            "🛡️ RUN SECURITY SCAN";
+        document.getElementById("securityScore").innerText =
+            "100%";
 
-        scanning = false;
 
-        addLog("Security scan complete. No spoofing detected.");
+        addLog("Spoof detection scan completed — no threat detected", "green");
 
-        showMessage(
-            "✅ Security scan complete. No spoofing detected."
-        );
+        showMessage("🛡️ Security scan complete. No spoofing detected.");
 
-    }, 2000);
+    }, 1500);
+
 }
 
 
-// DRONE COMMAND
+/* COMMANDS */
+
 function sendCommand(command) {
 
     if (!connected) {
 
-        showMessage("⚠️ Connect the drone first.");
-
-        addLog(
-            "Command blocked: drone is not connected."
-        );
+        showMessage("⚠️ Drone is offline.");
 
         return;
     }
@@ -114,90 +112,120 @@ function sendCommand(command) {
 
     if (!authenticated) {
 
-        showMessage("🔐 Authenticate the drone first.");
+        showMessage("🔒 Command blocked. Authentication required.");
 
-        addLog(
-            "Command blocked: authentication required."
-        );
+        addLog("Unauthorized command blocked", "yellow");
 
         return;
     }
 
 
-    addLog(
-        "Verified command sent: " + command
-    );
+    showMessage("📡 Command sent: " + command);
 
-    showMessage(
-        "🚁 Command executed: " + command
-    );
+    addLog("Verified command: " + command, "green");
 
 
-    if (command === "LAND") {
+    if (command === "Forward") {
 
-        document.getElementById("altitude").textContent =
-            "0 m";
+        document.getElementById("speed").innerText =
+            "25 km/h";
 
-    } else if (command === "UP") {
+        document.getElementById("altitude").innerText =
+            "125 m";
 
-        document.getElementById("altitude").textContent =
-            "150 m";
-
-    } else if (command === "DOWN") {
-
-        document.getElementById("altitude").textContent =
-            "100 m";
+        document.getElementById("telemetryAltitude").innerText =
+            "125 m";
     }
+
+
+    if (command === "Backward") {
+
+        document.getElementById("speed").innerText =
+            "15 km/h";
+
+        document.getElementById("altitude").innerText =
+            "115 m";
+
+        document.getElementById("telemetryAltitude").innerText =
+            "115 m";
+    }
+
+
+    if (command === "Left" || command === "Right") {
+
+        document.getElementById("speed").innerText =
+            "12 km/h";
+    }
+
 }
 
 
-// EMERGENCY STOP
+/* EMERGENCY STOP */
+
 function emergencyStop() {
 
-    addLog(
-        "🚨 EMERGENCY STOP ACTIVATED."
-    );
+    document.getElementById("speed").innerText =
+        "0 km/h";
 
-    showMessage(
-        "🚨 EMERGENCY STOP ACTIVATED!"
-    );
+
+    addLog("EMERGENCY STOP activated", "yellow");
+
+    showMessage("🛑 Emergency stop activated.");
+
 }
 
 
-// SHOW MESSAGE
+/* MESSAGE */
+
 function showMessage(message) {
 
-    const box =
-        document.getElementById("systemMessage");
+    document.getElementById("alertMessage").innerText =
+        message;
 
-    box.textContent = message;
 }
 
 
-// EVENT LOG
-function addLog(message) {
+/* LOG */
 
-    const log =
+function addLog(message, type) {
+
+    const logContainer =
         document.getElementById("eventLog");
 
-    const entry =
+
+    const newLog =
         document.createElement("div");
 
-    entry.className = "log";
+    newLog.className = "log";
 
-    entry.innerHTML = `
-        <span>●</span>
-        <p>${message}</p>
-    `;
 
-    log.prepend(entry);
+    const time =
+        new Date().toLocaleTimeString();
+
+
+    let dotClass =
+        type === "green"
+            ? "green-text"
+            : "yellow-text";
+
+
+    newLog.innerHTML =
+        `<span class="log-time">${time}</span>
+         <span class="${dotClass}">●</span>
+         ${message}`;
+
+
+    logContainer.prepend(newLog);
+
 }
 
 
-// CLEAR LOGS
+/* CLEAR LOGS */
+
 function clearLogs() {
 
     document.getElementById("eventLog").innerHTML = "";
 
-    showMessage("Event log cleared.");
+    showMessage("📜 Event log cleared.");
+
 }
