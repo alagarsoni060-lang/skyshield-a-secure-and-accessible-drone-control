@@ -4,58 +4,118 @@ let authenticated = false;
 function connectDrone() {
     connected = true;
 
-    const connection = document.getElementById("connectionStatus");
+    const status = document.getElementById("connectionStatus");
+    const text = document.getElementById("connectionText");
 
-    if (connection) {
-        connection.innerText = "ONLINE";
+    if (status) {
+        status.innerText = "ONLINE";
     }
 
-    showMessage("Drone connected successfully.");
+    if (text) {
+        text.innerText = "Drone connected";
+    }
+
+    addLog("Drone connected successfully.");
+    showMessage("✅ Drone connected successfully.");
 }
 
+
 function authenticateDrone() {
+
     if (!connected) {
-        showMessage("Please connect the drone first.");
+        showMessage("⚠️ Connect the drone first.");
         return;
     }
 
     authenticated = true;
 
-    const authentication = document.getElementById("authenticationStatus");
+    const status = document.getElementById("authenticationStatus");
 
-    if (authentication) {
-        authentication.innerText = "VERIFIED";
+    if (status) {
+        status.innerText = "VERIFIED";
     }
 
-    showMessage("Drone authentication successful.");
+    addLog("Drone authentication successful.");
+    showMessage("🔐 Drone authenticated successfully.");
 }
 
+
 function runSecurityScan() {
-    showMessage("Running security scan...");
+
+    showMessage("🔍 Running security scan...");
+
+    addLog("Security scan started.");
 
     setTimeout(function () {
-        showMessage("Security scan complete. No spoofing detected.");
+
+        const threat = document.getElementById("threatStatus");
+
+        if (threat) {
+            threat.innerText = "PROTECTED";
+        }
+
+        addLog("✅ Security scan complete - No spoofing detected.");
+
+        showMessage("✅ Security scan complete. No spoofing detected.");
+
     }, 1500);
 }
 
+
 function sendCommand(command) {
+
     if (!connected) {
-        showMessage("Connect the drone first.");
+        showMessage("⚠️ Connect the drone first.");
         return;
     }
 
     if (!authenticated) {
-        showMessage("Authenticate the drone first.");
+        showMessage("🔐 Authenticate the drone first.");
         return;
     }
 
-    showMessage("Command sent: " + command);
+    addLog("Command sent: " + command);
+
+    showMessage("🚁 Command sent: " + command);
 }
+
 
 function emergencyStop() {
-    showMessage("🚨 EMERGENCY STOP ACTIVATED");
+
+    addLog("🚨 EMERGENCY STOP ACTIVATED.");
+
+    showMessage("🚨 EMERGENCY STOP ACTIVATED!");
 }
 
+
 function showMessage(message) {
-    alert(message);
+
+    const messageBox = document.getElementById("systemMessage");
+
+    if (messageBox) {
+        messageBox.innerText = message;
+    } else {
+        alert(message);
+    }
+}
+
+
+function addLog(message) {
+
+    const log = document.getElementById("eventLog");
+
+    if (!log) {
+        return;
+    }
+
+    const entry = document.createElement("div");
+
+    entry.className = "log-entry";
+
+    entry.innerHTML = `
+        <span>●</span>
+        <p>${message}</p>
+    `;
+
+    log.prepend(entry);
 }
