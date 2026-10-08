@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,12 +12,10 @@
 <body>
 
     <!-- SIDEBAR -->
-
     <aside class="sidebar">
 
-        <div class="brand">
-            <div class="shield">🛡️</div>
-
+        <div class="logo">
+            <div class="logo-icon">🛡️</div>
             <div>
                 <h2>SkyShield</h2>
                 <span>DRONE SECURITY</span>
@@ -26,180 +23,108 @@
         </div>
 
         <nav>
-
-            <a class="active" href="#">
-                🏠 Dashboard
-            </a>
-
-            <a href="#">
-                📡 Drone Control
-            </a>
-
-            <a href="#">
-                🛡️ Security
-            </a>
-
-            <a href="#">
-                📊 Telemetry
-            </a>
-
-            <a href="#">
-                📜 Event Logs
-            </a>
-
+            <button class="nav-item active">🏠 Dashboard</button>
+            <button class="nav-item">🚁 Drone Control</button>
+            <button class="nav-item">🛡️ Security</button>
+            <button class="nav-item">📡 Telemetry</button>
+            <button class="nav-item">📋 Event Logs</button>
         </nav>
 
-        <div class="sidebar-bottom">
-            <p>System Status</p>
-            <strong>
-                <span class="online-dot"></span>
-                OPERATIONAL
-            </strong>
+        <div class="system">
+            <span>System Status</span>
+            <strong>● OPERATIONAL</strong>
         </div>
 
     </aside>
 
 
     <!-- MAIN -->
-
     <main class="main">
 
-        <!-- TOP BAR -->
-
-        <header class="topbar">
+        <header class="header">
 
             <div>
-                <p class="small-title">SECURE COMMAND CENTER</p>
+                <p class="eyebrow">SECURE COMMAND CENTER</p>
                 <h1>Drone Security Dashboard</h1>
             </div>
 
-            <div class="top-actions">
-
-                <div class="secure">
-                    🔐 SECURE MODE
-                </div>
-
-                <div class="user">
-                    👤 Operator
-                </div>
-
+            <div class="live">
+                ● SYSTEM LIVE
             </div>
 
         </header>
 
 
         <!-- STATUS CARDS -->
+        <section class="cards">
 
-        <section class="status-grid">
-
-            <div class="status-card">
-
-                <div class="card-icon blue">
-                    📡
-                </div>
-
+            <div class="card">
+                <div class="card-icon">🚁</div>
                 <div>
-                    <p>Drone Connection</p>
+                    <small>DRONE CONNECTION</small>
                     <h2 id="connectionStatus">OFFLINE</h2>
-                    <span id="connectionText">Waiting for connection</span>
+                    <p id="connectionText">Waiting for connection</p>
                 </div>
-
             </div>
 
 
-            <div class="status-card">
-
-                <div class="card-icon green">
-                    🔐
-                </div>
-
+            <div class="card">
+                <div class="card-icon">🔐</div>
                 <div>
-                    <p>Authentication</p>
-                    <h2 id="authStatus">UNVERIFIED</h2>
-                    <span id="authText">Authentication required</span>
+                    <small>AUTHENTICATION</small>
+                    <h2 id="authenticationStatus">UNVERIFIED</h2>
+                    <p>Authentication required</p>
                 </div>
-
             </div>
 
 
-            <div class="status-card">
-
-                <div class="card-icon green">
-                    🛡️
-                </div>
-
+            <div class="card">
+                <div class="card-icon">🛡️</div>
                 <div>
-                    <p>Threat Status</p>
+                    <small>THREAT STATUS</small>
                     <h2 id="threatStatus">PROTECTED</h2>
-                    <span id="threatText">No threat detected</span>
+                    <p id="threatText">No threat detected</p>
                 </div>
-
-            </div>
-
-
-            <div class="status-card">
-
-                <div class="card-icon orange">
-                    🔋
-                </div>
-
-                <div>
-                    <p>Battery</p>
-                    <h2 id="battery">94%</h2>
-                    <span>Healthy</span>
-                </div>
-
             </div>
 
         </section>
 
 
-        <!-- MAIN GRID -->
+        <!-- DASHBOARD -->
+        <section class="dashboard">
 
-        <section class="dashboard-grid">
+            <!-- MAP -->
+            <div class="panel map-panel">
 
-
-            <!-- MAP / MISSION -->
-
-            <div class="panel mission-panel">
-
-                <div class="panel-header">
-
+                <div class="panel-title">
                     <div>
-                        <p class="section-label">MISSION AREA</p>
+                        <span>MISSION AREA</span>
                         <h2>Drone Location</h2>
                     </div>
 
-                    <span class="live">
-                        ● LIVE
-                    </span>
-
+                    <b class="live-badge">● LIVE</b>
                 </div>
-
 
                 <div class="map">
 
                     <div class="grid-lines"></div>
 
-                    <div class="route route-one"></div>
-                    <div class="route route-two"></div>
+                    <div class="flight-path path1"></div>
+                    <div class="flight-path path2"></div>
 
-                    <div class="drone-marker">
+                    <div class="drone">
                         🚁
-                    </div>
-
-                    <div class="location-label">
-                        DRONE-01
+                        <label>DRONE-01</label>
                     </div>
 
                 </div>
 
 
-                <div class="coordinates">
+                <div class="telemetry">
 
                     <div>
                         <span>LATITUDE</span>
-                        <strong id="latitude">10.8505°</strong>
+                        <strong id="latitude">10.8506°</strong>
                     </div>
 
                     <div>
@@ -217,31 +142,22 @@
             </div>
 
 
-            <!-- SECURITY MONITOR -->
-
+            <!-- SECURITY -->
             <div class="panel security-panel">
 
-                <div class="panel-header">
-
+                <div class="panel-title">
                     <div>
-                        <p class="section-label">CYBER SECURITY</p>
+                        <span>CYBER SECURITY</span>
                         <h2>Security Monitor</h2>
                     </div>
 
-                    <span class="shield-status">
-                        🛡️ ACTIVE
-                    </span>
-
+                    <b class="active-badge">● ACTIVE</b>
                 </div>
 
 
                 <div class="security-circle">
-
-                    <div>
-                        <span>SECURITY</span>
-                        <strong id="securityScore">100%</strong>
-                    </div>
-
+                    <strong id="securityScore">100%</strong>
+                    <span>SECURITY</span>
                 </div>
 
 
@@ -249,7 +165,7 @@
 
                     <div>
                         <span>🔐 Authentication</span>
-                        <b id="authenticationCheck">PENDING</b>
+                        <b id="authCheck">READY</b>
                     </div>
 
                     <div>
@@ -264,13 +180,13 @@
 
                     <div>
                         <span>🔑 Command Verification</span>
-                        <b>ACTIVE</b>
+                        <b id="commandCheck">ACTIVE</b>
                     </div>
 
                 </div>
 
 
-                <button class="security-button" onclick="runSecurityScan()">
+                <button class="scan-button" onclick="runSecurityScan()">
                     🛡️ RUN SECURITY SCAN
                 </button>
 
@@ -279,66 +195,26 @@
         </section>
 
 
-        <!-- CONTROL + TELEMETRY -->
+        <!-- CONTROL -->
+        <section class="control-section">
 
-        <section class="bottom-grid">
+            <!-- CONNECTION -->
+            <div class="panel">
 
-
-            <!-- CONTROL -->
-
-            <div class="panel control-panel">
-
-                <div class="panel-header">
-
+                <div class="panel-title">
                     <div>
-                        <p class="section-label">FLIGHT CONTROL</p>
-                        <h2>Drone Commands</h2>
+                        <span>SECURE CONNECTION</span>
+                        <h2>Drone Authentication</h2>
                     </div>
-
                 </div>
 
+                <div class="big-buttons">
 
-                <div class="control-pad">
-
-                    <button onclick="sendCommand('Forward')">
-                        ▲
-                        <span>Forward</span>
+                    <button class="connect-button" onclick="connectDrone()">
+                        🔗 CONNECT DRONE
                     </button>
 
-                    <div>
-
-                        <button onclick="sendCommand('Left')">
-                            ◀
-                            <span>Left</span>
-                        </button>
-
-                        <button class="stop" onclick="emergencyStop()">
-                            ■
-                            <span>STOP</span>
-                        </button>
-
-                        <button onclick="sendCommand('Right')">
-                            ▶
-                            <span>Right</span>
-                        </button>
-
-                    </div>
-
-                    <button onclick="sendCommand('Backward')">
-                        ▼
-                        <span>Backward</span>
-                    </button>
-
-                </div>
-
-
-                <div class="control-actions">
-
-                    <button onclick="connectDrone()" class="primary">
-                        📡 CONNECT
-                    </button>
-
-                    <button onclick="authenticateDrone()" class="secondary">
+                    <button class="auth-button" onclick="authenticateDrone()">
                         🔐 AUTHENTICATE
                     </button>
 
@@ -347,118 +223,30 @@
             </div>
 
 
-            <!-- TELEMETRY -->
+            <!-- COMMAND -->
+            <div class="panel">
 
-            <div class="panel telemetry-panel">
+                <div class="panel-title">
+                    <div>
+                        <span>COMMAND CENTER</span>
+                        <h2>Drone Controls</h2>
+                    </div>
+                </div>
 
-                <div class="panel-header">
+
+                <div class="direction">
+
+                    <button onclick="sendCommand('UP')">⬆️</button>
 
                     <div>
-                        <p class="section-label">REAL-TIME DATA</p>
-                        <h2>Telemetry</h2>
+                        <button onclick="sendCommand('LEFT')">⬅️</button>
+                        <button onclick="sendCommand('LAND')">🛬</button>
+                        <button onclick="sendCommand('RIGHT')">➡️</button>
                     </div>
 
-                    <span class="live">
-                        ● LIVE
-                    </span>
+                    <button onclick="sendCommand('DOWN')">⬇️</button>
 
                 </div>
 
 
-                <div class="telemetry-grid">
-
-                    <div>
-                        <span>ALTITUDE</span>
-                        <strong id="telemetryAltitude">120 m</strong>
-                    </div>
-
-                    <div>
-                        <span>SPEED</span>
-                        <strong id="speed">0 km/h</strong>
-                    </div>
-
-                    <div>
-                        <span>SIGNAL</span>
-                        <strong id="signal">98%</strong>
-                    </div>
-
-                    <div>
-                        <span>BATTERY</span>
-                        <strong>94%</strong>
-                    </div>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- EVENT LOG -->
-
-        <section class="panel logs">
-
-            <div class="panel-header">
-
-                <div>
-                    <p class="section-label">SYSTEM ACTIVITY</p>
-                    <h2>Security Event Log</h2>
-                </div>
-
-                <button onclick="clearLogs()" class="clear-button">
-                    Clear
-                </button>
-
-            </div>
-
-
-            <div id="eventLog">
-
-                <div class="log">
-                    <span class="log-time">16:20:01</span>
-                    <span class="green-text">●</span>
-                    System initialized
-                </div>
-
-                <div class="log">
-                    <span class="log-time">16:20:04</span>
-                    <span class="green-text">●</span>
-                    Security monitoring active
-                </div>
-
-                <div class="log">
-                    <span class="log-time">16:20:07</span>
-                    <span class="yellow-text">●</span>
-                    Waiting for drone authentication
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- ALERT -->
-
-        <div id="alertBox" class="alert-box">
-
-            <strong>🛡️ SYSTEM MESSAGE</strong>
-
-            <span id="alertMessage">
-                SkyShield security system ready.
-            </span>
-
-        </div>
-
-
-        <footer>
-            SkyShield © 2026 | Secure & Accessible Drone Control | Hackathon Prototype
-        </footer>
-
-    </main>
-
-
-    <script src="script.js"></script>
-
-</body>
-
-</html>
+                <
