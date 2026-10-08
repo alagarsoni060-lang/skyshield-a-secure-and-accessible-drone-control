@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SkyShield - Drone Security</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <h1>🛡️ SKYSHIELD</h1>
+    <h2>Secure & Accessible Drone Control</h2>
+
+    <div class="dashboard">
+
+        <h3>Drone Status</h3>
+        <p id="status">🔴 Disconnected</p>
+
+        <button onclick="connectDrone()">Connect Drone</button>
+        <button onclick="authenticate()">Authenticate</button>
+        <button onclick="checkSpoofing()">Check Spoofing</button>
+
+        <h3>Drone Controls</h3>
+
+        <button>⬆️ Forward</button><br>
+
+        <button>⬅️ Left</button>
+        <button>🛑 Stop</button>
+        <button>➡️ Right</button>
+
+        <br>
+        <button>⬇️ Backward</button>
+
+        <p id="alert"></p>
+
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
